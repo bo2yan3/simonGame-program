@@ -6,8 +6,6 @@
 const int ledPins[] = {13, 12, 11, 10};
 const int buttonPins[] = {7, 6, 5, 4}; 
 
-
-
 // Button State Tracking
 int switchState0;  
 int switchState1;  
@@ -76,47 +74,31 @@ void loop()
     // sequence is generated when user loses, or game starts
     
     for (int i = 0; i < 5; i++){
-    	sequence[i] = random(4); 
-      
-    }
-    
+    	sequence[i] = random(4);  
+	}
     mode++; 
   }
   
-  
   if (mode == 1){
-    
     delay(1000);
-    
     lightLED(sequence[0]);
     
     count = 0; 
-    
     while (count < mode && now + timeOut * mode >= millis() ){
     	userInput(userSequence, mode); 
     }
     
     correctSequence = sequenceCheck(userSequence, sequence, mode); 
-    
     delay (1000); 
     
     if (correctSequence == false){
     	lose(); 
-      
       	mode = 0; 
     }
-    
     else if (correctSequence == true){
     	win();
-      
       	mode++; 
-    }
-  	
-    for (int i = 0; i < 5; i++){
-    	userSequence[i] = 0; 
-    }
-    
-    
+        
   }
   
   else if (mode == 2){
@@ -127,27 +109,22 @@ void loop()
     lightLED(sequence[1]); 
     
     count = 0; 
-    
     while (count < mode && now + timeOut * mode >= millis() ){
     	userInput(userSequence, mode);  
     }
-    
+	  
     correctSequence = sequenceCheck(userSequence, sequence, mode); 
     
     if (correctSequence == false){
     	lose(); 
-      
       	mode = 0; 
     }
-    
     else if (correctSequence == true){
     	win();
-      
       	mode++; 
     }
   }
-  
-  
+	  
   else if (mode == 3){
   
     delay(1000); 
@@ -166,13 +143,11 @@ void loop()
     
     if (correctSequence == false){
     	lose(); 
-      
       	mode = 0; 
     }
     
     else if (correctSequence == true){
     	win();
-      
       	mode++; 
     }
   }
@@ -195,14 +170,12 @@ void loop()
     correctSequence = sequenceCheck(userSequence, sequence, mode); 
     
     if (correctSequence == false){
-    	lose(); 
-      
+    	lose();
       	mode = 0; 
     }
     
     else if (correctSequence == true){
     	win();
-      
       	mode++; 
     }
   }
@@ -239,12 +212,10 @@ void loop()
     }  
   }
   
-  
   prev0 = switchState0;
   prev1 = switchState1;
   prev2 = switchState2;
-  prev3 = switchState3;
-  
+  prev3 = switchState3; 
 }
 
 
@@ -262,44 +233,33 @@ void userInput(int* userSequence, int mode){
     if (switchState0 == HIGH && prev0 == LOW){
     	userSequence[count] = 0; 
         count++; 
-      
-    }
-    
+    }  
     else if (switchState1 == HIGH && prev1 == LOW){
       userSequence[count] = 1; 
       count++;  
-      
-    }
-    
+    }  
     else if (switchState2 == HIGH && prev2 == LOW){
       userSequence[count] = 2; 
-      count++; 
-       
+      count++;   
     }
-    
     else if (switchState3 == HIGH && prev3 == LOW){
       userSequence[count] = 3; 
       count++; 
-      
     }
-    
   }
   
   prev0 = switchState0;
   prev1 = switchState1;
   prev2 = switchState2;
   prev3 = switchState3;
-
 }
 
 bool sequenceCheck(int* userSequence, int* sequence, int mode){
   for (int i = 0; i < mode; i++){
-    
     if (sequence[i] != userSequence[i]){
     	return false; 
     }
   }
-  
   return true; 
 }
 
@@ -307,12 +267,10 @@ bool sequenceCheck(int* userSequence, int* sequence, int mode){
 
 
 void lightLED(int num){
-  
   digitalWrite(ledPins[num], HIGH); 
   delay(500); 
   digitalWrite(ledPins[num], LOW); 
-  delay(500); 
-
+  delay(500);
 }
 
 void win(void){
@@ -321,6 +279,7 @@ void win(void){
   	digitalWrite(GREEN, LOW); 
   	delay(750); 
 }
+
 void lose(void){
 	digitalWrite(RED, HIGH); 
   	delay(750); 
