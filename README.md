@@ -1,4 +1,4 @@
-APSC 160 finals prep
+APSC 160 FINALS PREP
 
 code is not the best but functional. 
 should use more functions to improve debugging and readability but it is what it is :p. 
