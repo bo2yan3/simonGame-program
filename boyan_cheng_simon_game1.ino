@@ -17,8 +17,7 @@ int prev1 = LOW;
 int prev2 = LOW; 
 int prev3 = LOW; 
 
-// Sequence Trackingf
-
+// Sequence Tracking
 int sequence[5] = {0}; 
 int userSequence[5] = {0}; 
 int mode = 0; 
@@ -26,7 +25,6 @@ int count;
 bool correctSequence; 
 
 // Timeout Constant
-
 unsigned long timeOut = 20000; 
 
 // FUNCTION PROTOTYPES
